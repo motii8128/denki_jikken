@@ -4,15 +4,9 @@
 #define ROW_NUM 4
 #define COLUMN_NUM 5
 
-#define ROW_0 3
-#define ROW_1 5
-#define ROW_2 6
-#define ROW_3 9
+#define ROW_PINS ((int[]){3, 5, 6, 9})
 
-#define COLUMN_0 10
-#define COLUMN_1 11
-#define COLUMN_2 12
-#define COLUMN_3 13
-#define COLUMN_4 8
+#define COLUMN_PINS ((int[]){10, 11, 12, 13, 8})
+
 
 #endif

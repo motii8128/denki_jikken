@@ -16,8 +16,8 @@ class MatrixDriver
         void turn_off(int x, int y);
 
     private:
-        int row_pin_[4];
-        int column_pin_[5];
+        int row_pin_[ROW_NUM];
+        int column_pin_[COLUMN_NUM];
         int input_pin;
 };
 
