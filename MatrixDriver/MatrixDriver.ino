@@ -27,16 +27,7 @@ void MatrixDriver::init_pin()
 
 void MatrixDriver::off_all()
 {
-  digitalWrite(row_pin_[0], LOW);
-  digitalWrite(row_pin_[1], LOW);
-  digitalWrite(row_pin_[2], LOW);
-  digitalWrite(row_pin_[3], LOW);
-
-  digitalWrite(column_pin_[0], HIGH);
-  digitalWrite(column_pin_[1], HIGH);
-  digitalWrite(column_pin_[2], HIGH);
-  digitalWrite(column_pin_[3], HIGH);
-  digitalWrite(column_pin_[4], HIGH);
+  for(int i = 0; i < )
 }
 
 void MatrixDriver::on_all()
@@ -59,7 +50,7 @@ void MatrixDriver::digital_on(int x, int y)
   digitalWrite(column_pin_[x], LOW);
 }
 
-void MatrixDriver::analog_on(int x, int y, float power_rate)
+void MatrixDriver::analog_on(int x, int y, int power_rate)
 {
   int value = map(power_rate, 0, 100, 0, 255);
   analogWrite(row_pin_[y], value);
