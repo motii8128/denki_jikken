@@ -1,69 +1,76 @@
 #include "MatrixDriver.hpp"
+#include "Func.hpp"
+#include <time.h>
 
-
+#include <stdlib.h>
 
 MatrixDriver driver;
+int count = 0;
 
 void setup()
 {
   driver.init_pin();
   driver.off_all();
+  Serial.begin(115200);
+
+  
 }
 
 void loop()
 {
-  vertical_snake(100);
+  // all_flush(driver,10);
+  // vertical_snake(driver,10, 10);
+  // grad(driver,10, 1000);
+  // grad_updown(driver, 10, 1000);
+  // grad_downup(driver,10, 1000);
+  cycron(driver, 10, 5);
+  // fl_rr(driver, 10, 5);
+  // rr_fl(driver, 10, 5);
+  // rand_flush(driver, 10, 10);
 }
 
-void all_flush(int delay_ms)
+void select_func(int value)
 {
-  driver.on_all();
-  delay(delay_ms);
-  driver.off_all();
-  delay(delay_ms);
-}
+  switch(value)
+  {
+    case 0:
+      all_flush(driver,50);
+      break;
 
-void vertical_snake(int delay_ms)
-{
-  for(int i = 0; i < COLUMN_NUM; i++)
-  {
-    for(int j = 0; j < ROW_NUM; j++)
-    {
-      driver.digital_on(i, j);
-      delay(delay_ms);
-      driver.turn_off(i, j);
-      delay(delay_ms);
-    }
-  }
-}
+    case 1:
+      vertical_snake(driver,50, 1);
+      break;
 
-void grad_horizontal(int delay_ms)
-{
-  int count = 0;
-  while(count < 100)
-  {
-    for(int i = 0; i < COLUMN_NUM; i++)
-    {
-      for(int j = 0; j < ROW_NUM; j++)
-      {
-        driver.analog_on(i, j, count);
-      }
-    }
-    count++;
-    delay(delay_ms);
+    case 2:
+      grad(driver,50, 100);
+      break;
+
+
+    case 3:
+      grad_updown(driver,50, 100);
+      break;
+
+    case 4:
+      grad_downup(driver,50, 100);
+      break;
+
+    case 5:
+      cycron(driver, 50, 5);
+      break;
+      
+    case 6:
+      fl_rr(driver, 50, 5);
+      break;
+
+    case 7:
+      rr_fl(driver, 50, 5);
+      break;
+
+    case 8:
+      rand_flush(driver, 50, 5);
+      break;
+
+    default:
+      break;
   }
-  while(count > 0)
-  {
-    for(int i = 0; i < COLUMN_NUM; i++)
-    {
-      for(int j = 0; j < ROW_NUM; j++)
-      {
-        driver.analog_on(i, j, count);
-      }
-    }
-    count--;
-    delay(delay_ms);
-  }
-  driver.off_all();
-  delay(delay_ms);
 }
